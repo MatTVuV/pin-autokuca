@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PINAutokucaAPI.DTOs;
@@ -35,39 +34,14 @@ namespace PINAutokucaAPI.Controllers
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
+            // Ako uloga (npr. Admin ili User) ne postoji u bazi, kreiraj je
             if (!await _roleManager.RoleExistsAsync(dto.Role))
                 await _roleManager.CreateAsync(new IdentityRole(dto.Role));
 
+            // Dodijeli ulogu korisniku
             await _userManager.AddToRoleAsync(user, dto.Role);
 
-            return Ok("Korisnik uspješno kreiran.");
-        }
-
-        [HttpPost("register-admin-temp")]
-        [AllowAnonymous] // Osiguravamo da svatko (pa i vi s lokalnog računala preko Swaggera/Postmana) može okinuti rutu
-        public async Task<IActionResult> RegisterAdminTemp([FromBody] RegisterDto dto)
-        {
-            var userExists = await _userManager.FindByNameAsync(dto.Username);
-            if (userExists != null) return BadRequest("Korisnik već postoji.");
-
-            IdentityUser user = new()
-            {
-                Email = dto.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = dto.Username
-            };
-
-            var result = await _userManager.CreateAsync(user, dto.Password);
-            if (!result.Succeeded) return BadRequest(result.Errors);
-
-            // Prisilno kreiramo i dodjeljujemo isključivo ulogu 'Admin'
-            string adminRole = "Admin";
-            if (!await _roleManager.RoleExistsAsync(adminRole))
-                await _roleManager.CreateAsync(new IdentityRole(adminRole));
-
-            await _userManager.AddToRoleAsync(user, adminRole);
-
-            return Ok($"Administrator '{dto.Username}' uspješno kreiran izravno na AWS RDS bazi!");
+            return Ok($"Korisnik s ulogom {dto.Role} uspješno kreiran.");
         }
 
         [HttpPost("login")]
@@ -84,13 +58,18 @@ namespace PINAutokucaAPI.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
+                // Dodavanje uloga u Claims
                 foreach (var userRole in userRoles)
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-                var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+                // Dohvat tajnog ključa (Sistemska varijabla na AWS-u ili appsettings.json)
+                var secretKey = Environment.GetEnvironmentVariable("JWT_SECRET")
+                                ?? _configuration["Jwt:Key"]
+                                ?? "SuperTajniFallbackKljucZaRazvoj2026!";
 
+                var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
                 var signingCredentials = new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256);
 
                 var token = new JwtSecurityToken(
@@ -98,12 +77,18 @@ namespace PINAutokucaAPI.Controllers
                     audience: _configuration["Jwt:Audience"],
                     expires: DateTime.Now.AddHours(3),
                     claims: authClaims,
-                    signingCredentials: signingCredentials
+                    signingCredentials: signingCredentials // 💡 Osigurano potpisivanje tokena
                 );
 
-                return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token), expiration = token.ValidTo, roles = userRoles });
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    expiration = token.ValidTo,
+                    roles = userRoles,
+                    username = user.UserName
+                });
             }
-            return Unauthorized("Pogrešno korisnički naziv ili lozinka.");
+            return Unauthorized("Pogrešno korisničko ime ili lozinka.");
         }
     }
 }

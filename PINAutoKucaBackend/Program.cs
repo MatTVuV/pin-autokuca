@@ -45,6 +45,10 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    // Dohva?amo klju? iz okruženja (AWS) ili iz appsettings.json (Lokalno)
+    var secretKey = Environment.GetEnvironmentVariable("JWT_SECRET")
+                    ?? builder.Configuration["Jwt:Key"]!;
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -53,7 +57,10 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+
+        // DODAJ OVU LINIJU unutar postoje?ih parametara:
+        RoleClaimType = ClaimTypes.Role
     };
 });
 
