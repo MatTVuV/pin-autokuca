@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\wwwroot\\images\\VT385BF_2cf8dfdb-d935-4f54-88f4-d71508079947.jpg",
+      "PackagePath": "staticwebassets\\images\\VT385BF_2cf8dfdb-d935-4f54-88f4-d71508079947.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.PINAutokucaAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.PINAutokucaAPI.props",
+      "PackagePath": "build\\PINAutokucaAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.PINAutokucaAPI.props",
+      "PackagePath": "buildMultiTargeting\\PINAutokucaAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.PINAutokucaAPI.props",
+      "PackagePath": "buildTransitive\\PINAutokucaAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
