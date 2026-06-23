@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0GDgC2BCEW/YsNSB9ii2rv+R2zETr+L8H0ByPQzwThwfakX2ZJO/GYN+AfRNoZirM7dQk7aTwSOyaiyvnRFMRA==",
+  "dgSpecHash": "yAVTUA1vn7adt1lFsK20cqjUBAOMjJApQ1wuYx3HZdqUF+Q3anccn9IGzq89KSE4R4bs4Sbgcst0Ohgyc3CdUA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\PINAutokucaAPI.csproj",
+  "projectFilePath": "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\PINAutokucaAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Matija-PC\\.nuget\\packages\\awssdk.core\\4.0.9.4\\awssdk.core.4.0.9.4.nupkg.sha512",
     "C:\\Users\\Matija-PC\\.nuget\\packages\\awssdk.extensions.netcore.setup\\4.0.4.9\\awssdk.extensions.netcore.setup.4.0.4.9.nupkg.sha512",

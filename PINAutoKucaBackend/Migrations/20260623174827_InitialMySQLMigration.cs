@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PINAutokucaAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialAwsMigration : Migration
+    public partial class InitialMySQLMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -249,7 +249,7 @@ namespace PINAutokucaAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "GalerijaFotografija",
+                name: "Images",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -261,9 +261,9 @@ namespace PINAutokucaAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GalerijaFotografija", x => x.Id);
+                    table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_GalerijaFotografija_Cars_CarRegistracija",
+                        name: "FK_Images_Cars_CarRegistracija",
                         column: x => x.CarRegistracija,
                         principalTable: "Cars",
                         principalColumn: "Registracija",
@@ -346,8 +346,8 @@ namespace PINAutokucaAPI.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_GalerijaFotografija_CarRegistracija",
-                table: "GalerijaFotografija",
+                name: "IX_Images_CarRegistracija",
+                table: "Images",
                 column: "CarRegistracija");
 
             migrationBuilder.CreateIndex(
@@ -380,7 +380,7 @@ namespace PINAutokucaAPI.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "GalerijaFotografija");
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "Transactions");

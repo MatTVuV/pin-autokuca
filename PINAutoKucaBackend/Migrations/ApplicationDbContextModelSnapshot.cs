@@ -284,7 +284,7 @@ namespace PINAutokucaAPI.Migrations
 
                     b.HasIndex("CarRegistracija");
 
-                    b.ToTable("GalerijaFotografija");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("PINAutokucaAPI.Entities.Transaction", b =>

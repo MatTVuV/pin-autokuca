@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\PINAutokucaAPI.csproj": {}
+    "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\PINAutokucaAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\PINAutokucaAPI.csproj": {
+    "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\PINAutokucaAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\PINAutokucaAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\PINAutokucaAPI.csproj",
         "projectName": "PINAutokucaAPI",
-        "projectPath": "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\PINAutokucaAPI.csproj",
+        "projectPath": "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\PINAutokucaAPI.csproj",
         "packagesPath": "C:\\Users\\Matija-PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\obj\\",
+        "outputPath": "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

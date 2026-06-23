@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5CI1HuyQoA5opJRVytTXNJ4adN+XFNopu5I3uohVVGE=",
+  "Hash": "Vmpm75E3pf45vUulq9YXmCRH2x6kTvLrnY9rHsLO3zM=",
   "Source": "PINAutokucaAPI",
   "BasePath": "_content/PINAutokucaAPI",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "PINAutokucaAPI\\wwwroot",
       "Source": "PINAutokucaAPI",
-      "ContentRoot": "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\wwwroot\\",
       "BasePath": "_content/PINAutokucaAPI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\wwwroot\\images\\VT385BF_2cf8dfdb-d935-4f54-88f4-d71508079947.jpg",
+      "Identity": "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\wwwroot\\images\\VT385BF_2cf8dfdb-d935-4f54-88f4-d71508079947.jpg",
       "SourceId": "PINAutokucaAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Matija-PC\\source\\repos\\PINAutokuca\\PINAutokuca\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Matija-PC\\Documents\\PINAutokucaProjekt\\PINAutokucaBackend\\wwwroot\\",
       "BasePath": "_content/PINAutokucaAPI",
       "RelativePath": "images/VT385BF_2cf8dfdb-d935-4f54-88f4-d71508079947.jpg",
       "AssetKind": "All",
