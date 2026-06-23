@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PINAutokucaAPI.DTOs;
@@ -40,6 +41,33 @@ namespace PINAutokucaAPI.Controllers
             await _userManager.AddToRoleAsync(user, dto.Role);
 
             return Ok("Korisnik uspješno kreiran.");
+        }
+
+        [HttpPost("register-admin-temp")]
+        [AllowAnonymous] // Osiguravamo da svatko (pa i vi s lokalnog računala preko Swaggera/Postmana) može okinuti rutu
+        public async Task<IActionResult> RegisterAdminTemp([FromBody] RegisterDto dto)
+        {
+            var userExists = await _userManager.FindByNameAsync(dto.Username);
+            if (userExists != null) return BadRequest("Korisnik već postoji.");
+
+            IdentityUser user = new()
+            {
+                Email = dto.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = dto.Username
+            };
+
+            var result = await _userManager.CreateAsync(user, dto.Password);
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            // Prisilno kreiramo i dodjeljujemo isključivo ulogu 'Admin'
+            string adminRole = "Admin";
+            if (!await _roleManager.RoleExistsAsync(adminRole))
+                await _roleManager.CreateAsync(new IdentityRole(adminRole));
+
+            await _userManager.AddToRoleAsync(user, adminRole);
+
+            return Ok($"Administrator '{dto.Username}' uspješno kreiran izravno na AWS RDS bazi!");
         }
 
         [HttpPost("login")]
